@@ -1,202 +1,137 @@
-# UniGuide — AI-Powered University Information Assistant
+# UniGuide — Week 1 Project Scope
 
-## 1. Project Overview
+## 1. Project Name
 
-**Project Name:** UniGuide  
-**Domain:** Artificial Intelligence, Natural Language Processing (NLP), and Higher Education  
-**Project Type:** Document-Grounded AI Information Assistant
+**UniGuide: AI-Powered University Information Assistant**
 
-UniGuide is an AI-powered university information assistant designed to help UTM students find academic information using official university documents. Students can ask questions in natural language, and the system will retrieve relevant information from its document collection and generate answers supported by source references.
+## 2. Domain
 
-The initial scope will focus on academic regulations, programme information, course registration guidance, and academic calendars. UniGuide should acknowledge when its available documents do not contain sufficient information rather than generating unsupported answers.
+Artificial Intelligence (AI), Natural Language Processing (NLP), Information Retrieval, and Higher Education Technology.
 
-## 2. Problem Statement
+## 3. Problem Statement
 
-University academic information is published across different webpages, handbooks, regulations, and official documents. Students may need to consult multiple sources to locate specific information, such as academic dates, programme requirements, and course registration procedures.
+University students need to access academic information such as programme requirements, academic regulations, course registration dates, and academic calendars. At Universiti Teknologi Malaysia (UTM), these resources are available through official faculty webpages, student resource portals, and university documents. For example, the UTM Faculty of Computing website provides undergraduate programme information, academic regulations, programme handbooks, registration dates, and academic calendars (Universiti Teknologi Malaysia [UTM], n.d.-a).
 
-Although these resources provide official information, finding the correct section may require students to search through multiple documents. UniGuide proposes a document-grounded AI assistant that allows students to ask academic questions in natural language and receive answers based on retrieved official information.
+Although these resources provide important information, students may need to navigate different webpages or search through documents to locate the information relevant to their questions. Traditional webpage navigation and document searching also require users to identify appropriate keywords and interpret the retrieved information themselves.
 
-A preliminary survey of UTM students will be used to investigate their current information-searching practices, the difficulties they experience, and their interest in using such an assistant.
+Existing research has explored the use of retrieval-augmented generation (RAG) to connect large language models with external document collections. RAG combines information retrieval with language generation to produce responses grounded in retrieved information (Lewis et al., 2020). However, the usefulness of a university information assistant depends on whether it retrieves relevant documents, generates accurate answers, and communicates its supporting evidence clearly (Es et al., 2024).
 
-## 3. Evidence of the Problem
+Therefore, this project proposes UniGuide, an AI-powered assistant that allows students to ask questions in natural language and receive answers based on publicly available official UTM academic documents. The proposed system will provide source references and indicate when the available documents do not contain sufficient evidence to answer a question reliably.
 
-### Evidence 1: Academic Information Is Distributed Across Resources
+The extent to which UTM students experience difficulties finding academic information will be investigated further through student feedback or a survey.
 
-The UTM Faculty of Computing undergraduate webpage provides links to different undergraduate resources, including programme information and academic-related materials. This demonstrates that students may need to navigate different resources to find the information they require.
+## 4. Evidence of the Problem
 
-**Source:** Universiti Teknologi Malaysia (UTM), Faculty of Computing — Undergraduate Resources  
-https://comp.utm.my/undergraduate/
+| Evidence | Description and relevance | Source / citation |
+|---|---|---|
+| Evidence 1: Multiple types of academic resources | The UTM Faculty of Computing undergraduate webpage provides access to programme handbooks, academic regulations, registration dates, timetables, and academic calendars. This demonstrates that students may need to navigate different academic resources to find information relevant to a question. It supports the existence of a document-navigation challenge, but does not independently prove that students experience difficulty. | UTM Faculty of Computing (n.d.-a). [Undergraduate resources](https://comp.utm.my/undergraduate/). |
+| Evidence 2: Separate student information portal | The Faculty of Computing Student Development Hub provides access to academic calendars, academic regulations, course registration guidance, and undergraduate handbooks. This illustrates the variety of academic information students may need to consult. | UTM Faculty of Computing (n.d.-b). [Programmes and Student Hub](https://comp.utm.my/programmes-and-student-hub/). |
+| Evidence 3: Research on document-based student assistants | Research has investigated RAG-based chatbots that use institutional documents, including student handbooks, admission guidelines, FAQs, and course catalogues, to answer student information queries. This supports the technical relevance of a document-grounded assistant for higher education. | Ndudiri and Bamikole (2026). [Student information chatbot study](https://doi.org/10.62226/ijarst20262787). |
 
-### Evidence 2: Academic Dates Are Published Separately
+**Additional validation planned:** A short survey or interview with UTM students will investigate the types of academic information they search for, the sources they currently use, and whether finding answers across university resources is difficult. No survey findings are claimed at this stage.
 
-UTM publishes an official Academic Calendar for the 2026/2027 session, containing semester dates and other important academic periods. Students seeking particular dates may need to locate and consult this document.
+## 5. Initial Related Work (at least 3)
 
-**Source:** Universiti Teknologi Malaysia (UTM), Academic Calendar 2026/2027  
-https://amd.utm.my/wp-content/uploads/sites/460/2026/05/Final_Kalendar-Akademik-Sarjana-Muda.Sarjana.Kedoktoran-20262027-14.5.2026-pembetulan.pdf
+| Study / solution | Source / citation | Key limitation and relevance to UniGuide |
+|---|---|---|
+| **1. Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks** — Lewis et al. (2020) introduced a RAG approach that combines a language model with retrieved external knowledge. This provides a technical foundation for generating answers from university documents rather than relying only on information stored in a model's parameters. | Lewis et al. (2020). [NeurIPS paper](https://papers.nips.cc/paper/2020/hash/6b493230205f780e1bc26945df7481e5-Abstract.html). | RAG does not automatically guarantee correct answers. Its performance depends on retrieving relevant evidence and generating responses faithfully. UniGuide will therefore need to evaluate retrieval relevance, answer correctness, and source-reference accuracy. |
+| **2. RAGAs: Automated Evaluation of Retrieval Augmented Generation** — Es et al. (2024) proposed an evaluation framework for examining RAG systems, including the relevance of retrieved context and the faithfulness and quality of generated answers. | Es et al. (2024). [ACL Anthology](https://aclanthology.org/2024.eacl-demo.16/). | An evaluation framework does not itself solve the university information-search problem. Automated evaluation metrics also need to be interpreted carefully and should be supplemented with manually verified test questions and answers where feasible. |
+| **3. AI-Powered Intelligent Chatbot for Student Information Services** — Ndudiri and Bamikole (2026) described a student information chatbot using RAG and institutional documents such as handbooks, admission guidelines, FAQs, and course catalogues. The study reported a pilot evaluation involving 120 test queries. | Ndudiri and Bamikole (2026). [Research paper](https://doi.org/10.62226/ijarst20262787). | The reported evaluation was a formative pilot involving 30 volunteer participants in its own institutional context. Its results cannot automatically be generalised to UTM students or UTM documents. UniGuide will require its own evaluation using UTM-specific information and test questions. |
 
-### Planned Primary Evidence: Student Survey
+These studies inform the proposed technical approach and evaluation plan. Their findings are not evidence that UniGuide has already achieved comparable performance.
 
-A preliminary survey will be conducted with UTM students to investigate:
+## 6. Engineering Gap / Limitation
 
-- How students currently find academic information.
-- Which types of academic information they search for most frequently.
-- Whether they experience difficulty locating relevant information.
-- Whether they would find a document-grounded academic assistant useful.
+**Gap / Limitation:**
 
-**Note:** The webpages demonstrate that academic information is available across different resources, but they do not independently establish how frequently students experience difficulties. The survey will help verify the extent of the problem.
+Official UTM academic resources are available online, but a student seeking an answer may still need to identify the appropriate webpage or document and locate the relevant passage. A general-purpose language model may also produce an answer that is not adequately supported by the specific official document needed for an academic question.
 
-## 4. Initial Related Work and Existing Approaches
+The proposed engineering gap is to investigate whether a document-grounded AI assistant can make academic information easier to retrieve and understand while maintaining traceability to official sources.
 
-### 4.1 Human Academic Advising
+UniGuide will address this gap by combining document retrieval with language generation, providing source references for answers, and implementing a fallback response when sufficient supporting evidence cannot be retrieved. The effectiveness of these features must be demonstrated through testing; they are proposed design goals rather than established results.
 
-Academic advisors provide contextual guidance and can help students understand academic requirements.
+## 7. Initial Project Objectives (2–3)
 
-**Limitation:** Access may depend on advisor availability, appointment schedules, and the time required to respond to individual questions.
+| Objective | Description | Planned evaluation |
+|---|---|---|
+| **O1** | To collect, inspect, and prepare a feasible set of publicly available official UTM academic documents for use as a searchable knowledge base. | Verify source authenticity, document accessibility, content coverage, and successful text extraction. |
+| **O2** | To implement a RAG-based question-answering prototype that retrieves relevant passages from the prepared documents and generates answers with identifiable source references. | Test a set of questions against the retrieved passages and manually check answer correctness and citation accuracy. |
+| **O3** | To evaluate the prototype's retrieval relevance, answer correctness, source-reference accuracy, response time, and ability to abstain when the available evidence is insufficient. | Use a predefined test-question set, a documented answer key, and measurable evaluation criteria. |
 
-### 4.2 Static University Webpages and PDF Documents
+## 8. Target Users
 
-Official university webpages, academic calendars, handbooks, and regulations provide authoritative information.
+The primary target users are **UTM undergraduate students**, initially focusing on students who need information about academic programmes and procedures.
 
-**Limitation:** Students may need to search through several pages or documents and identify the relevant sections themselves.
+Potential users may include:
 
-### 4.3 Retrieval-Augmented Generation (RAG)
+- New students who need to understand university academic procedures.
+- Current undergraduate students looking for academic regulations and programme requirements.
+- Students checking course registration information and important academic dates.
 
-Lewis et al. (2020) introduced Retrieval-Augmented Generation, which combines information retrieval with text generation to support knowledge-intensive tasks.
+The initial prototype will focus on a manageable collection of publicly available UTM academic resources, with priority given to Faculty of Computing undergraduate information. Expansion to additional faculties or university-wide resources will depend on the project's time, document availability, and evaluation results.
 
-**Limitation:** RAG does not guarantee that the retrieved information is relevant or that the generated answer is correct. UniGuide will therefore require source citations and evaluation against verified answers.
+UniGuide is intended to support information retrieval. It will not replace official university announcements, academic advisors, faculty administrators, or formal university decisions.
 
-**Reference:**  
-Lewis, P., et al. (2020). *Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.* Advances in Neural Information Processing Systems (NeurIPS).  
-https://papers.nips.cc/paper/2020/hash/6b493230205f780e1bc26945df7481e5-Abstract.html
+## 9. Data Sources (at least 2)
 
-### 4.4 RAG Evaluation
+| Source | Intended use | URL |
+|---|---|---|
+| **Source 1: UTM Faculty of Computing — Undergraduate Resources** | A starting source for undergraduate programme handbooks, academic regulations, registration information, timetables, and academic calendars. | https://comp.utm.my/undergraduate/ |
+| **Source 2: UTM Faculty of Computing — Programmes and Student Hub** | Additional student-facing resources and academic guidance for the initial knowledge base. | https://comp.utm.my/programmes-and-student-hub/ |
+| **Source 3: UTM Admission — Undergraduate Kit** | Publicly available admission and student briefing information, where relevant to the selected questions and target users. | https://admission.utm.my/undergraduate-kit/ |
 
-Es et al. (2024) presented RAGAs, a framework for evaluating retrieval-augmented generation systems.
+Only publicly accessible documents suitable for academic use will be selected. Each document's origin, title, relevant date or academic session, and URL will be recorded. Where possible, current official documents will be prioritised. Duplicate, outdated, inaccessible, or irrelevant materials will be excluded or clearly identified.
 
-**Limitation:** Automated evaluation metrics alone do not establish that an answer accurately represents UTM's official academic requirements. UniGuide will also require manual verification against authoritative documents.
+The selected documents will form the initial knowledge base. The availability of a webpage does not automatically mean every linked document will be downloaded, processed, or included.
 
-**Reference:**  
-Es, S., et al. (2024). *RAGAs: Automated Evaluation of Retrieval Augmented Generation.* EACL 2024.  
-https://aclanthology.org/2024.eacl-demo.16/
+## 10. Similar to EduAdvisor
 
-## 5. Engineering Gap
+EduAdvisor is a Malaysian education consultation platform that provides educational content, course and university comparisons, scholarship search, course recommendations, and education-advising services (EduAdvisor, n.d.).
 
-Existing university resources provide official academic information, while general-purpose AI assistants can respond to questions in natural language. However, an answer generated by a general-purpose AI assistant may not be grounded in the latest or relevant university documents.
+UniGuide shares several broad similarities with EduAdvisor:
 
-UniGuide will address this gap by combining document retrieval with answer generation. The system will retrieve relevant passages from a selected collection of official UTM documents, generate an answer based on those passages, and provide source references so users can verify the information.
+- Both aim to help students access and understand education-related information.
+- Both can help students navigate information that may otherwise require visiting multiple webpages.
+- Both seek to make information more accessible and useful for student decision-making.
+- Both may reduce the effort needed to locate relevant education information.
 
-The system will also include a fallback response when sufficient supporting information cannot be retrieved. Its effectiveness will be evaluated rather than assumed.
+The main similarity is the goal of helping students find useful education information. However, their intended users, information sources, and functions are not identical.
 
-## 6. Project Objectives
+## 11. Different from EduAdvisor
 
-**O1:** To collect and prepare publicly accessible UTM academic documents for use as a knowledge source.
+| Aspect | EduAdvisor | Proposed UniGuide |
+|---|---|---|
+| **Primary focus** | Education guidance, course and university comparisons, scholarships, and consultation services. | Answering academic-information questions using official UTM documents. |
+| **Target information** | Education options and pathways across institutions, including course information, entry requirements, and scholarships. | A curated collection of official UTM academic resources, initially prioritising Faculty of Computing undergraduate information. |
+| **Interaction approach** | Searchable education content, comparison features, recommendation tools, and access to advisors. | Natural-language questions answered using a retrieval-augmented generation approach. |
+| **Evidence in responses** | Users can consult the platform's published information and relevant pages. | The proposed system will aim to identify the specific source document and supporting passage used for each answer. |
+| **Handling insufficient evidence** | Depends on the particular service or feature used. | The prototype will be designed to indicate when its selected documents do not provide sufficient supporting evidence. |
+| **Scope** | Education choices and services across multiple institutions. | A narrower, UTM-focused academic information assistant. |
 
-**O2:** To implement a retrieval-augmented question-answering system that retrieves relevant document passages and generates answers with source references.
+The comparison is based on EduAdvisor's publicly described services and the planned scope of UniGuide (EduAdvisor, n.d.). The proposed source-referencing and abstention features are design objectives and will need to be implemented and tested.
 
-**O3:** To evaluate UniGuide based on retrieval relevance, answer correctness, citation accuracy, response time, and its ability to abstain when sufficient evidence is unavailable.
+## 12. Responsible AI Risks (at least 2)
 
-## 7. Target Users
+| Risk | Who could be harmed and potential impact | Proposed mitigation |
+|---|---|---|
+| **Risk 1: Hallucination and misinformation** | Students may receive an incorrect answer about academic regulations, course requirements, or registration dates and make decisions based on it. | Ground answers in retrieved official documents, provide source references, test factual correctness, and abstain when supporting evidence is insufficient. |
+| **Risk 2: Outdated or conflicting information** | Students may receive information from an old academic calendar, superseded regulation, or conflicting documents and miss an important requirement or deadline. | Record document dates and source URLs, prioritise current official materials, identify conflicting evidence where possible, and periodically review the knowledge base. |
+| **Risk 3: Privacy and inappropriate data handling** | Students may accidentally enter matric numbers, personal details, or sensitive academic information into the assistant. | Use public documents as the initial knowledge base, avoid collecting unnecessary personal information, do not request credentials, and avoid storing user queries containing personal information unless necessary and appropriately protected. |
 
-The primary target users are undergraduate students at Universiti Teknologi Malaysia, initially focusing on students who need information about:
+These risks and mitigations are proposed design considerations. Their effectiveness will be reviewed during implementation and evaluation.
 
-- Academic regulations and requirements.
-- Programme and course information.
-- Course registration guidance.
-- Semester dates and academic calendars.
+## 13. References
 
-The initial prototype will focus on a defined collection of publicly accessible academic documents rather than attempting to answer every university-related question.
+EduAdvisor. (n.d.). *About us*. Retrieved October 27, 2026, from https://eduadvisor.my/about-us
 
-## 8. Initial Data Sources
+Es, S., James, J., Espinosa-Anke, L., & Schockaert, S. (2024). RAGAs: Automated evaluation of retrieval augmented generation. In *Proceedings of the 18th Conference of the European Chapter of the Association for Computational Linguistics: System Demonstrations* (pp. 150–158). Association for Computational Linguistics. https://doi.org/10.18653/v1/2024.eacl-demo.16
 
-The following official sources will be investigated for suitable documents:
+Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., Küttler, H., Lewis, M., Yih, W.-T., Rocktäschel, T., Riedel, S., & Kiela, D. (2020). Retrieval-augmented generation for knowledge-intensive NLP tasks. *Advances in Neural Information Processing Systems, 33*, 9459–9474. https://papers.nips.cc/paper/2020/hash/6b493230205f780e1bc26945df7481e5-Abstract.html
 
-1. **UTM Faculty of Computing — Undergraduate Resources**  
-   https://comp.utm.my/undergraduate/
+Ndudiri, O. P., & Bamikole, O. J. (2026). Design and development of an AI-powered intelligent chatbot for student information services in higher educational institutions using large language models. *International Journal of Advanced Research in Science and Technology, 15*(8), 2526–2533. https://doi.org/10.62226/ijarst20262787
 
-2. **UTM Faculty of Computing — Programmes and Student Hub**  
-   https://comp.utm.my/programmes-and-student-hub/
+Universiti Teknologi Malaysia, Faculty of Computing. (n.d.-a). *Undergraduate*. Retrieved October 27, 2026, from https://comp.utm.my/undergraduate/
 
-3. **UTM Academic Calendar 2026/2027**  
-   https://amd.utm.my/wp-content/uploads/sites/460/2026/05/Final_Kalendar-Akademik-Sarjana-Muda.Sarjana.Kedoktoran-20262027-14.5.2026-pembetulan.pdf
+Universiti Teknologi Malaysia, Faculty of Computing. (n.d.-b). *Programmes and Student Hub*. Retrieved October 27, 2026, from https://comp.utm.my/programmes-and-student-hub/
 
-These are initial source webpages and documents to investigate. Before implementation, the exact documents, their relevance, and their publication or revision dates will be checked. Only documents suitable for the intended use will be included in the knowledge base.
-
-## 9. Proposed Technical Approach
-
-The initial prototype is expected to use the following components:
-
-1. **Document collection:** Gather selected public UTM academic documents.
-2. **Document processing:** Extract text from supported PDF documents and prepare it for retrieval.
-3. **Text chunking:** Divide document content into smaller sections while retaining source metadata.
-4. **Embedding and retrieval:** Represent document sections as embeddings and retrieve passages relevant to a student's question.
-5. **Answer generation:** Use a language model to generate an answer based on the retrieved passages.
-6. **Source citations:** Display the document title and relevant source information alongside the answer.
-7. **Fallback mechanism:** Indicate when the retrieved evidence is insufficient to answer the question reliably.
-8. **User interface:** Provide a simple interface for students to submit questions and read answers.
-
-**Potential technologies:** Python, PyMuPDF, Sentence Transformers, FAISS, a suitable language model, and Streamlit. The final tools will be selected based on availability, compatibility, and project constraints.
-
-## 10. Initial Evaluation Plan
-
-UniGuide will be evaluated using a manually prepared set of questions whose answers can be checked against the selected official documents.
-
-The evaluation will include answerable questions, questions requiring information from different document sections, and questions for which the available documents do not provide a sufficient answer.
-
-| Evaluation criterion | Initial evaluation method |
-|---|---|
-| Retrieval relevance | Check whether the retrieved passages contain information relevant to the question. |
-| Answer correctness | Compare generated answers with verified information in the official documents. |
-| Citation accuracy | Check whether the cited source supports the corresponding answer. |
-| Response time | Measure the time taken to return an answer. |
-| Abstention behaviour | Test whether the system appropriately declines to provide unsupported answers. |
-
-Evaluation results will be recorded and used to identify weaknesses in retrieval, answer generation, and source attribution. Quantitative performance targets will be defined after an initial baseline has been established.
-
-## 11. Responsible AI Risks
-
-### 11.1 Incorrect or Misleading Answers
-
-The system may generate an incorrect answer or misinterpret an academic requirement.
-
-**Mitigation:** Ground answers in retrieved official passages, display citations, test against verified questions, and abstain when sufficient evidence is unavailable.
-
-### 11.2 Outdated Information
-
-Academic regulations, registration procedures, and semester dates may change.
-
-**Mitigation:** Record document dates, review source updates, and refresh the knowledge base when relevant official documents are revised.
-
-### 11.3 Privacy and Data Protection
-
-Students may include personal information in their questions.
-
-**Mitigation:** Avoid collecting unnecessary personal information, minimise the storage of queries, and disclose relevant data-handling practices.
-
-### 11.4 Unequal Accessibility
-
-The system may respond less effectively to questions written in different styles or languages.
-
-**Mitigation:** Test the system using varied question wording and provide clear responses. Language support will be limited to the languages tested during evaluation.
-
-## 12. Initial Project Limitations
-
-- The first prototype will cover only the selected UTM academic documents.
-- The system will not replace official academic advisors or university administrative decisions.
-- The quality of its answers will depend on the coverage, accuracy, and currency of its source documents.
-- The initial evaluation will use a limited test set and may not represent every student's needs.
-- The system will not guarantee that every generated answer is correct.
-
-## 13. Weekly Progress
-
-| Week | Focus | Deliverable | Status |
-|---|---|---|---|
-| Week 1 | Project scoping and GitHub setup | README, project scope, observation report, and system map | In progress |
-| Week 2 | Requirements and project refinement | Refined problem, requirements, and evaluation criteria | Planned |
-| Week 3 onwards | Data preparation, system implementation, testing, and evaluation | Working prototype and documented evaluation results | Planned |
-
-## 14. Expected Outcome
-
-The expected outcome is a prototype that helps UTM undergraduate students locate academic information through natural-language questions. Answers should be supported by retrieved official documents and accompanied by source references. The project will assess whether this approach can provide relevant and verifiable answers within the defined scope.
-
-The prototype's usefulness and performance will be determined through testing and evaluation rather than assumed in advance.
-
+Universiti Teknologi Malaysia, Admission. (n.d.). *Undergraduate Kit*. Retrieved October 27, 2026, from https://admission.utm.my/undergraduate-kit/
