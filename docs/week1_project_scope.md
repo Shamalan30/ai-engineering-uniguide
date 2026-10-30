@@ -74,13 +74,56 @@ UniGuide is intended to support information retrieval. It will not replace offic
 
 ## 9. Data Sources (at least 2)
 
+The following official UTM webpages and documents will be considered for the initial UniGuide knowledge base.
+
+### 9.1 Original UTM Data Source Websites
+
 | Source | Intended use | URL |
 |---|---|---|
 | **Source 1: UTM Faculty of Computing — Undergraduate Resources** | A starting source for undergraduate programme handbooks, academic regulations, registration information, timetables, and academic calendars. | https://comp.utm.my/undergraduate/ |
 | **Source 2: UTM Faculty of Computing — Programmes and Student Hub** | Additional student-facing resources and academic guidance for the initial knowledge base. | https://comp.utm.my/programmes-and-student-hub/ |
 | **Source 3: UTM Admission — Undergraduate Kit** | Publicly available admission and student briefing information, where relevant to the selected questions and target users. | https://admission.utm.my/undergraduate-kit/ |
 
-Only publicly accessible documents suitable for academic use will be selected. Each document's origin, title, relevant date or academic session, and URL will be recorded. Where possible, current official documents will be prioritised. Duplicate, outdated, inaccessible, or irrelevant materials will be excluded or clearly identified.
+### 9.2 Actual UTM Academic Documents
+
+The following documents are potential primary sources for the initial document collection.
+
+| No. | Official document | Intended use | Direct document link |
+|---|---|---|---|
+| 1 | **UTM Academic Regulations — 16th Edition, 2026** | Academic rules, credit requirements, grading, examinations, academic standing, graduation requirements and academic misconduct. | [Open or download PDF](https://comp.utm.my/wp-content/uploads/2026/10/FT-UG-Academic-Regulations-16th-edition.pdf) |
+| 2 | **UTM Academic Calendar — Session 2026/2027 (Bachelor's, Master's and Doctoral Programmes)** | Semester dates, lecture periods, revision periods, examinations and semester breaks. | [Open or download PDF](https://amd.utm.my/wp-content/uploads/sites/460/2026/05/Final_Kalendar-Akademik-Sarjana-Muda.Sarjana.Kedoktoran-20262027-14.5.2026-pembetulan.pdf) |
+| 3 | **Course Registration User Manual — Current/Senior Students, 2026/2027** | Course registration procedures for existing UTM students. | [Open or download PDF](https://amd.utm.my/wp-content/uploads/sites/460/2026/10/User-Manual_Course-Registration-Senior-Student_update202620271.pdf) |
+| 4 | **Course Registration User Manual — New Students, 2026/2027** | Course registration procedures for new undergraduate students. | [Open or download PDF](https://amd.utm.my/wp-content/uploads/sites/460/2026/10/User-Manual_NewStudent_Course-Registration_update-202620271.pdf) |
+| 5 | **Course Amendment — Insert/Delete User Manual, 2026/2027** | Procedures for inserting or deleting registered courses. | [Open or download PDF](https://amd.utm.my/wp-content/uploads/sites/460/2026/10/User-Manual_Course-Amendment-Insert-delete_update202620271.pdf) |
+
+### 9.3 Additional Official UTM Resource Pages
+
+These official pages provide further academic documents and guidance that may be considered for future expansion.
+
+| Resource | Intended use | Official URL |
+|---|---|---|
+| **UTM School of Undergraduate Studies — Academic Rules** | Academic regulations for different undergraduate programme categories, including English and Malay resources. | https://ugs.utm.my/academic-rules/ |
+| **UTM Academic Management Division — Course Registration** | General course-registration guidance, student manuals and FAQs. | https://amd.utm.my/course-registration/ |
+| **UTM Academic Management Division — Academic Calendar** | Academic calendar archive, including current and previous academic sessions. | https://amd.utm.my/academic-calendar/ |
+| **UTM Faculty of Computing — Undergraduate Resources** | Important course-registration dates and Faculty of Computing undergraduate resources. | https://comp.utm.my/undergraduate/ |
+| **UTM Academic Management Division — Examination Guidelines** | Examination-related guidance and official resources. | https://amd.utm.my/examination-guidelines/ |
+| **UTM Faculty of Computing — Programmes and Student Hub** | Programme handbooks, timetables and other student resources. | https://comp.utm.my/programmes-and-student-hub/ |
+
+### 9.4 Document Selection and Preparation
+
+The initial knowledge base will prioritise the following documents:
+
+1. UTM Academic Regulations — 16th Edition, 2026.
+2. UTM Academic Calendar — Session 2026/2027.
+3. Course Registration User Manual — Current/Senior Students.
+4. Course Amendment — Insert/Delete User Manual.
+5. Faculty of Computing AI programme handbook or curriculum structure, subject to verification of the correct document and version for the intended student cohort.
+
+The New Student Course Registration Manual may also be included if the initial system is intended to support new undergraduate students.
+
+Only publicly accessible documents suitable for academic use will be selected. Each document's origin, title, issuing unit, relevant date or academic session, and URL will be recorded. Where possible, current official documents will be prioritised.
+
+Duplicate, outdated, inaccessible, or irrelevant materials will be excluded or clearly identified. Documents from different academic sessions will not be treated as interchangeable.
 
 The selected documents will form the initial knowledge base. The availability of a webpage does not automatically mean every linked document will be downloaded, processed, or included.
 
