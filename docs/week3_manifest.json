@@ -1,0 +1,39 @@
+{
+  "pipeline_version": "week3-v1",
+  "generated_at_utc": "2026-11-11T16:24:51.401927+00:00",
+  "records": [
+    {
+      "source_id": "S01",
+      "source_filename": "academic_regulations_2026.pdf",
+      "source_sha256": "d2743dfad87d3be3393732e0416088ad62cf4afb9e6f7355eac47ab715de6a04",
+      "prepared_output": "data/processed/prepared_text.jsonl",
+      "prepared_sha256": "0efc623bcba67adf5b28842a1e6d810cb08972d13d799f6ba9ed6d53a5cb33cd",
+      "processing_note": "source_id=S01; PDF text extraction using pypdf; Tesseract OCR fallback for suspicious pages; whitespace cleaning; paragraph-aware chunking; chunk_size=500; page-level metadata preservation; JSONL export; B3 validation",
+      "source_version": "Not verified",
+      "access_rights": "Not verified",
+      "status": "Prepared; quality review pending"
+    },
+    {
+      "source_id": "S02",
+      "source_filename": "course_registration_guide_2026_2027.pdf",
+      "source_sha256": "1f37688b7836ba7f324ef6078395c854cff4dcad20e7ada38118828955b7644c",
+      "prepared_output": "data/processed/prepared_text.jsonl",
+      "prepared_sha256": "0efc623bcba67adf5b28842a1e6d810cb08972d13d799f6ba9ed6d53a5cb33cd",
+      "processing_note": "source_id=S02; PDF text extraction using pypdf; Tesseract OCR fallback for suspicious pages; whitespace cleaning; paragraph-aware chunking; chunk_size=500; page-level metadata preservation; JSONL export; B3 validation",
+      "source_version": "Not verified",
+      "access_rights": "Not verified",
+      "status": "Prepared; quality review pending"
+    },
+    {
+      "source_id": "S03",
+      "source_filename": "academic_calendar_2026_2027.pdf",
+      "source_sha256": "991821afb6fa5497a80853654e05b7d86ca65a69e4267a8a907d229ad3c1dc1c",
+      "prepared_output": "data/processed/prepared_text.jsonl",
+      "prepared_sha256": "0efc623bcba67adf5b28842a1e6d810cb08972d13d799f6ba9ed6d53a5cb33cd",
+      "processing_note": "source_id=S03; PDF text extraction using pypdf; Tesseract OCR fallback for suspicious pages; whitespace cleaning; paragraph-aware chunking; chunk_size=500; page-level metadata preservation; JSONL export; B3 validation",
+      "source_version": "Not verified",
+      "access_rights": "Not verified",
+      "status": "Prepared; quality review pending"
+    }
+  ]
+}
