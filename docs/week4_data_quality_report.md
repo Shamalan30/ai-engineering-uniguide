@@ -1,188 +1,324 @@
-# Week 4 — Data Quality and Bias Report
+Week 4 — Data Quality and Bias Report
 
-**Project:** UniGuide — UTM Academic Information Assistant  
-**Course:** AI Engineering  
-**Lab:** Topic 4 — Data Quality and Responsible Data Practices  
-**Data Pathway:** A — PDF/TXT
+Project: UniGuide: An AI-Powered Academic Information Assistant for UTM Undergraduate Students
+Course: AI Engineering
+Lab: Topic 4 — Data Quality and Responsible Data Practices
+Data Pathway: A — PDF/TXT
 
-## 1. Project and Data Overview
+1. Project and Data Overview
 
-UniGuide is an AI-powered academic information assistant designed to help Universiti Teknologi Malaysia (UTM) students access information about academic regulations, course registration and academic schedules. The system aims to provide relevant answers using official university documents.
+UniGuide is an AI-powered academic information assistant designed to help UTM undergraduate students obtain answers about academic regulations, course registration and academic schedules using official university documents.
 
-This audit evaluates the quality of the text data prepared during Topic 3 before its use in future AI retrieval and question-answering tasks.
+This audit examines the quality of the text data prepared in Topic 3 and its suitability for future document retrieval and question answering.
 
-**Related Topic 2 requirements:**
-- Requirement 1: [Insert exact Topic 2 requirement ID for accurate academic information retrieval]
-- Requirement 2: [Insert exact Topic 2 requirement ID for source traceability or reliable responses]
+Two Topic 2 functional requirements were selected:
 
-Three UTM documents were processed:
+Requirement
 
-| Source ID | Document | Prepared Records |
-|---|---|---:|
-| S01 | Academic Regulations 2026 | 251 |
-| S02 | Course Registration Guide 2026/2027 | 17 |
-| S03 | Academic Calendar 2026/2027 | 17 |
-| **Total** | | **285** |
+Description
 
-The audit examined the prepared text output from the Topic 3 Part C PDF/TXT pipeline.
+Data Needed
 
-**Audited output:** `data/pipeline_v1/documents/prepared_text.jsonl`  
-**Matching manifest:** `data/pipeline_v1/documents/pipeline_manifest.json`
+FR1
 
-A representative sample of 15 records was selected across the three sources. Automated validation was also performed on all 285 records.
+Answer undergraduate academic enquiries related to UTM academic regulations, programme handbooks and academic guidelines.
 
-The sample supports initial inspection but does not establish the quality of every extracted passage.
+Accurate, readable and sufficiently complete academic document text.
 
-## 2. Five-Dimension Quality Scorecard
+FR3
 
-The prepared dataset was evaluated using five operational data-quality dimensions.
+Provide references to relevant official UTM documents that support generated answers.
 
-| Dimension | Finding and Evidence | Impact / Decision |
-|---|---|---|
-| Completeness | All 15 sampled records contained the required fields, and no empty text was detected. | Pass for sampled structural completeness; full content coverage not verified. |
-| Consistency | No invalid source IDs or page numbers were detected in the sample. | Pass for checked metadata consistency. |
-| Accuracy | Two records contained unreadable extracted text. Comparison with the original PDF identified them as the cover and final barcode page. | Warning: extraction quality requires additional monitoring. |
-| Timeliness | The Academic Regulations document is dated 2026, while the other two sources relate to the 2026/2027 academic session. | Review: confirm that these remain the applicable versions before deployment. |
-| Uniqueness | No repeated text records were detected in the 15-record sample. | Pass for sampled exact duplicates; wider semantic duplication not verified. |
+Reliable source IDs, filenames and page references.
 
-The results indicate that the prepared dataset meets basic structural requirements. However, structural validity does not guarantee that all extracted content is readable, complete or accurate.
+The Week 2 evaluation criteria specify a target of at least 80% answer correctness for FR1/FR2 and at least 95% citation-source correctness for FR3/RAI1. These are future system evaluation targets, not results measured in this lab.
 
-## 3. Validation Findings
+The audited data comes from Topic 3 Part C:
 
-Two project-specific validation rules were applied to all 285 prepared records.
+Output: data/pipeline_v1/documents/prepared_text.jsonl
 
-**V1 — Basic Text Integrity**
+Manifest: data/pipeline_v1/documents/pipeline_manifest.json
 
-Each record must contain non-empty text without unresolved `/gid` extraction patterns.
+Source ID
 
-- Records tested: 285
-- Passed: 285
-- Failed: 0
+Document
 
-**V2 — Source Traceability**
+Records
 
-Each record must contain a recognised source ID, a valid positive page number and a non-empty source filename.
+Pages Represented
 
-- Records tested: 285
-- Passed: 285
-- Failed: 0
+S01
 
-Both validation rules achieved a 100% pass rate against their defined conditions.
+Academic Regulations 2026
 
-However, manual inspection identified two unreadable records that passed V1. This demonstrates that basic automated validation is insufficient to detect all PDF extraction errors.
+251
 
-## 4. Duplicate, Anomaly and Coverage Findings
+79
 
-No exact repeated text records were detected in the 15-record sample.
+S02
 
-Two suspicious records were identified:
+Course Registration Guide 2026/2027
 
-| Record ID | Source | PDF Page | Finding |
-|---|---|---:|---|
-| 1 | S01 | 1 | Unreadable text extracted from the cover page |
-| 251 | S01 | 81 | Unreadable text extracted from the final barcode page |
+17
 
-Inspection of the original PDF confirmed that these pages do not contain substantive academic regulations. Their extracted text should be reviewed for exclusion from future retrieval while retaining the original source document.
+10
 
-**Coverage assessment:**
+S03
 
-Academic regulations are represented by 251 prepared records across 79 pages. These records support questions involving university academic policies.
+Academic Calendar 2026/2027
 
-Course registration information is represented by 17 prepared records across 10 pages. These records support questions about registration procedures and related guidance.
+17
 
-The academic calendar contributes another 17 records across two pages.
+2
 
-Although all three sources are represented, this does not confirm complete coverage of every academic question. Additional topic-level verification is required.
+Total
 
-## 5. Bias Assessment
 
-A potential **pipeline-induced bias** was identified during PDF text extraction.
 
-Documents with clear, machine-readable text may be represented more accurately than documents containing scanned pages, complex layouts or images.
+285
 
-This may cause UniGuide's future retrieval system to favour well-extracted academic information while overlooking content affected by extraction errors.
+91
 
-Another potential issue is unequal source representation. Academic Regulations contributes 251 records, compared with 17 records each from the Course Registration Guide and Academic Calendar.
+Fifteen records were selected across the three sources for representative inspection, using approximately five evenly distributed records per source. Automated validation was subsequently applied to all 285 records.
 
-This difference does not automatically indicate bias because the documents have different lengths. However, it may affect retrieval if chunking and ranking are not properly evaluated.
+2. Five-Dimension Quality Scorecard
 
-**Proposed mitigation:**
+Dimension
 
-- Review unreadable or suspicious text against original documents.
-- Exclude confirmed non-content extraction artefacts from future retrieval.
-- Evaluate question coverage across different academic topics.
-- Preserve source references for verification.
+Observed Finding and Evidence
 
-These are potential risks, not evidence of unfair system behaviour. Model-level fairness and retrieval accuracy have not yet been evaluated.
+Potential Impact
 
-## 6. Privacy, Rights and Governance
+Decision
 
-The dataset originates from UTM academic documents, with source references and preparation information recorded in the Topic 3 pipeline manifest.
+Completeness
 
-The inspected material consists of institutional academic information rather than student-specific personal records. However, the complete dataset has not undergone a formal sensitive-information review.
+All 15 sampled records contained required fields and non-empty text.
 
-The Academic Regulations publication includes a copyright notice restricting reproduction and use in information storage and retrieval systems without written permission.
+Missing academic content could prevent UniGuide from answering FR1 enquiries.
 
-Therefore, permission for UniGuide's intended document reuse is currently **Not Verified**.
+Pass for sampled structural completeness
 
-Recommended safeguards include:
+Consistency
 
-- Confirming permission or another valid legal basis before using restricted material in the intended retrieval system.
-- Keeping original documents and source information traceable.
-- Avoiding the publication of confidential or personally identifiable information.
-- Revalidating documents whenever official academic policies are updated.
+No invalid source IDs or page numbers were detected in the sample.
 
-The project maintainer should be responsible for reviewing document versions and correcting identified extraction issues.
+Inconsistent metadata could produce incorrect source references under FR3.
 
-## 7. Mitigation and Impact on Requirements
+Pass for checked metadata
 
-Two improvements are prioritised.
+Accuracy
 
-**Improvement 1 — Extraction Quality Review**
+Two sampled records contained unreadable extraction artefacts. The original PDF shows that these correspond to a cover and barcode page.
 
-Review suspicious text records and exclude confirmed non-content artefacts from future retrieval. Any extraction errors affecting actual academic information should be corrected using the original documents.
+Similar errors in substantive pages could reduce answer correctness.
 
-This supports the requirement for accurate academic information retrieval.
+Warning
 
-**Improvement 2 — Source Governance and Coverage Verification**
+Timeliness
 
-Verify document reuse permissions, confirm current document versions and assess whether important academic topics are adequately represented.
+The Academic Regulations publication is dated 2026; the other sources are labelled 2026/2027. Current applicability has not been independently confirmed.
 
-This supports reliable, traceable and responsible information delivery.
+Outdated rules or dates could lead to incorrect academic advice.
 
-Both improvements should be completed before the prepared data is used in a deployed retrieval or question-answering system.
+N.V. — current applicability
 
-Residual risks include undetected OCR errors, incomplete topic coverage and future changes to university academic policies.
+Uniqueness
 
-## 8. Quality-Gate Decision
+No exact repeated text was detected within the 15-record sample.
 
-**Decision: HOLD for downstream use of the audited dataset.**
+Unnecessary duplication could influence retrieval results.
 
-The dataset passed both automated validation rules across all 285 prepared records, demonstrating acceptable basic text and metadata structure under the defined checks.
+Pass for sampled exact duplicates
 
-Nevertheless, manual inspection identified two extraction anomalies, showing that automated validation alone cannot guarantee content readability.
+The findings show that the dataset satisfies basic structural checks. However, text readability, complete content coverage and source freshness require further verification.
 
-More importantly, permission for the intended reuse of the Academic Regulations publication has not been verified.
+3. Validation Findings
 
-The dataset should therefore not proceed to downstream retrieval-system use until the relevant rights and permissions have been clarified.
+Two validation rules were applied to the full prepared dataset.
 
-**Conditions for re-review:**
+V1 — Basic Text Integrity (FR1)
 
-1. Verify permission or another applicable legal basis for the intended document use.
-2. Review and appropriately handle the two identified extraction anomalies.
-3. Confirm the applicable document versions and inspect representative academic content against the original sources.
+Condition: Each record must contain non-empty text without unresolved /gid extraction patterns.
 
-Once these conditions are addressed, the dataset can be reassessed for progression to the next development stage.
+V2 — Source Traceability (FR3)
 
----
+Condition: Each record must contain a recognised source ID, a positive integer page number and a non-empty source filename.
 
-## Supporting Evidence
+Rule
 
-- Topic 3 pipeline notebook, including Week 4 validation cells.
-- Prepared text output and corresponding pipeline manifest.
-- Five-dimension data-quality inspection output.
-- V1 and V2 full-dataset validation output.
-- Manual extraction review identifying records 1 and 251.
-- Source coverage output for S01, S02 and S03.
+Records Tested
 
-**Audit limitation:** The results establish basic data-quality findings for the specified prepared dataset. They do not demonstrate final retrieval performance, answer accuracy or system fairness.
+Passed
+
+Failed
+
+Action
+
+V1
+
+285
+
+285
+
+0
+
+Retain records for further readability review
+
+V2
+
+285
+
+285
+
+0
+
+Retain source metadata; verify citation correctness later
+
+Both rules passed for all 285 records.
+
+However, V1 did not identify two records containing unreadable text because those records were non-empty and contained no /gid patterns. Therefore, the results demonstrate compliance with the defined rules rather than complete extraction accuracy.
+
+4. Duplicate, Anomaly and Coverage Findings
+
+No exact repeated text was identified in the 15-record sample.
+
+Two extraction anomalies were identified during manual inspection:
+
+Record ID
+
+Source
+
+PDF Page
+
+Observation
+
+1
+
+S01
+
+1
+
+Unreadable extracted text from the cover page
+
+251
+
+S01
+
+81
+
+Unreadable extracted text from the final barcode page
+
+Comparison with the original PDF confirmed that these pages do not contain substantive academic regulations. Their corrupted text should be reviewed for exclusion from future retrieval, without deleting the original document.
+
+Two task-relevant coverage areas were considered:
+
+Academic regulations: The 251 prepared records from S01 provide material for answering questions about academic policies, assessment, registration rules and other undergraduate regulations. However, the completeness of individual policy sections has not been fully verified.
+
+Course registration: The 17 records from S02 provide material for course registration enquiries. Their presence confirms source representation but not complete coverage of every registration procedure.
+
+The academic calendar contributes another 17 records from S03, supporting future questions about semester schedules and important dates.
+
+These observations are based on record counts and selected inspection, not a comprehensive assessment of every academic topic.
+
+5. Bias Assessment
+
+A potential pipeline-induced bias was identified in the document preparation process.
+
+PDF pages containing machine-readable text may be extracted more accurately than scanned pages, complex tables or image-based content. This could result in some academic information being represented less clearly in the prepared dataset.
+
+The possible consequence is that UniGuide may retrieve well-extracted information more frequently while overlooking relevant content affected by extraction problems.
+
+There is also unequal representation across sources: S01 contributes 251 records, while S02 and S03 contribute 17 each. This difference is partly explained by document length and does not establish unfairness. Nevertheless, it should be considered during future retrieval evaluation.
+
+Proposed controls: Compare suspicious prepared records with original PDFs, correct substantive extraction errors, review coverage across academic topics and evaluate retrieval results using questions from all three sources.
+
+No claim about final model fairness or retrieval accuracy can be made because the question-answering system has not yet been evaluated.
+
+6. Privacy, Rights and Governance
+
+The dataset was prepared from three UTM academic documents. Source IDs and preparation information are recorded in the Topic 3 pipeline manifest.
+
+The inspected records concern institutional academic information rather than individual student records. However, a complete sensitive-information audit has not been performed.
+
+The Academic Regulations 2026 publication identifies UTM Press as its publisher and contains a copyright notice restricting reproduction and information storage and retrieval uses without written permission.
+
+Therefore, permission for the intended downstream reuse remains Not Verified. The reuse rights of the other sources also require confirmation.
+
+The original documents should be retained in approved storage, and restricted content should not be uploaded to a public repository without authorisation.
+
+The project maintainer is responsible for reviewing source updates, checking permissions and revalidating prepared data whenever documents or extraction methods change.
+
+A concrete safeguard is to maintain source references and restrict public distribution of original or extracted content until the relevant permissions are verified.
+
+7. Mitigation and Impact on Requirements
+
+Priority
+
+Improvement
+
+Responsibility and Timing
+
+Requirement Impact
+
+1
+
+Review suspicious text and verify important extracted academic sections against the original PDFs.
+
+Project developer, before retrieval implementation
+
+FR1 — accurate academic information
+
+2
+
+Verify document reuse permissions, source versions and citation metadata.
+
+Project developer with appropriate UTM source owners, before downstream use
+
+FR3 — reliable official source references
+
+The first improvement reduces the risk of incorrect or incomplete academic answers, supporting the future answer correctness target of at least 80%.
+
+The second improvement supports reliable citations and responsible data use, contributing to the future citation-source correctness target of at least 95%.
+
+These thresholds are evaluation targets and have not been measured in Topic 4.
+
+Residual risks include undetected extraction errors, incomplete topic coverage, outdated academic information and unresolved reuse permissions.
+
+8. Quality-Gate Decision
+
+Decision: HOLD for downstream use of the audited dataset.
+
+The dataset passed both automated validation rules across all 285 records, demonstrating acceptable basic text integrity and source metadata structure under the defined checks.
+
+However, manual inspection identified two extraction anomalies, and the intended reuse permissions for the source documents have not been verified.
+
+The dataset should therefore remain on HOLD for downstream retrieval-system use until these issues are addressed.
+
+Conditions for re-review:
+
+Confirm permission or another applicable legal basis for the intended document use.
+
+Review and appropriately handle the identified extraction anomalies.
+
+Verify source versions and inspect representative substantive academic content against the original documents.
+
+Once these conditions are satisfied, the prepared dataset can be reassessed for further development.
+
+Supporting Evidence
+
+Week 2 Requirements Specification — docs/week2_requirements.md
+
+Week 2 Evaluation Criteria — docs/week2_evaluation_criteria.md
+
+Week 3 prepared text output — data/pipeline_v1/documents/prepared_text.jsonl
+
+Week 3 pipeline manifest — data/pipeline_v1/documents/pipeline_manifest.json
+
+Week 3/Week 4 notebook — UniGuide_Week3_Pipeline_Week4_Data_Quality_Audit.ipynb
+
+Week 4 sample inspection, validation and source coverage outputs
+
+Original Academic Regulations 2026 PDF, pages 1 and 81
+
+Audit limitation: The findings establish the observed quality of the audited prepared data under the stated checks. They do not establish final answer accuracy, retrieval performance, citation correctness or system fairness.
