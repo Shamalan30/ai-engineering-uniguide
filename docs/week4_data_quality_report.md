@@ -13,123 +13,33 @@ This audit examines the quality of the text data prepared in Topic 3 and its sui
 
 Two Topic 2 functional requirements were selected:
 
-Requirement
-
-Description
-
-Data Needed
-
-FR1
-
-Answer undergraduate academic enquiries related to UTM academic regulations, programme handbooks and academic guidelines.
-
-Accurate, readable and sufficiently complete academic document text.
-
-FR3
-
-Provide references to relevant official UTM documents that support generated answers.
-
-Reliable source IDs, filenames and page references.
+Requirement	Description	Data Needed
+FR1	Answer undergraduate academic enquiries related to UTM academic regulations, programme handbooks and academic guidelines.	Accurate, readable and sufficiently complete academic document text.
+FR3	Provide references to relevant official UTM documents that support generated answers.	Reliable source IDs, filenames and page references.
 
 The Week 2 evaluation criteria specify a target of at least 80% answer correctness for FR1/FR2 and at least 95% citation-source correctness for FR3/RAI1. These are future system evaluation targets, not results measured in this lab.
 
 The audited data comes from Topic 3 Part C:
 
-Output: data/pipeline_v1/documents/prepared_text.jsonl
+* Output: data/pipeline_v1/documents/prepared_text.jsonl
+* Manifest: data/pipeline_v1/documents/pipeline_manifest.json
 
-Manifest: data/pipeline_v1/documents/pipeline_manifest.json
-
-Source ID
-
-Document
-
-Records
-
-Pages Represented
-
-S01
-
-Academic Regulations 2026
-
-251
-
-79
-
-S02
-
-Course Registration Guide 2026/2027
-
-17
-
-10
-
-S03
-
-Academic Calendar 2026/2027
-
-17
-
-2
-
-Total
-
-
-
-285
-
-91
+Source ID	Document	Records	Pages Represented
+S01	Academic Regulations 2026	251	79
+S02	Course Registration Guide 2026/2027	17	10
+S03	Academic Calendar 2026/2027	17	2
+Total		285	91
 
 Fifteen records were selected across the three sources for representative inspection, using approximately five evenly distributed records per source. Automated validation was subsequently applied to all 285 records.
 
 2. Five-Dimension Quality Scorecard
 
-Dimension
-
-Observed Finding and Evidence
-
-Potential Impact
-
-Decision
-
-Completeness
-
-All 15 sampled records contained required fields and non-empty text.
-
-Missing academic content could prevent UniGuide from answering FR1 enquiries.
-
-Pass for sampled structural completeness
-
-Consistency
-
-No invalid source IDs or page numbers were detected in the sample.
-
-Inconsistent metadata could produce incorrect source references under FR3.
-
-Pass for checked metadata
-
-Accuracy
-
-Two sampled records contained unreadable extraction artefacts. The original PDF shows that these correspond to a cover and barcode page.
-
-Similar errors in substantive pages could reduce answer correctness.
-
-Warning
-
-Timeliness
-
-The Academic Regulations publication is dated 2026; the other sources are labelled 2026/2027. Current applicability has not been independently confirmed.
-
-Outdated rules or dates could lead to incorrect academic advice.
-
-N.V. — current applicability
-
-Uniqueness
-
-No exact repeated text was detected within the 15-record sample.
-
-Unnecessary duplication could influence retrieval results.
-
-Pass for sampled exact duplicates
+Dimension	Observed Finding and Evidence	Potential Impact	Decision
+Completeness	All 15 sampled records contained required fields and non-empty text.	Missing academic content could prevent UniGuide from answering FR1 enquiries.	Pass for sampled structural completeness
+Consistency	No invalid source IDs or page numbers were detected in the sample.	Inconsistent metadata could produce incorrect source references under FR3.	Pass for checked metadata
+Accuracy	Two sampled records contained unreadable extraction artefacts. The original PDF shows that these correspond to a cover and barcode page.	Similar errors in substantive pages could reduce answer correctness.	Warning
+Timeliness	The Academic Regulations publication is dated 2026; the other sources are labelled 2026/2027. Current applicability has not been independently confirmed.	Outdated rules or dates could lead to incorrect academic advice.	N.V. — current applicability
+Uniqueness	No exact repeated text was detected within the 15-record sample.	Unnecessary duplication could influence retrieval results.	Pass for sampled exact duplicates
 
 The findings show that the dataset satisfies basic structural checks. However, text readability, complete content coverage and source freshness require further verification.
 
@@ -145,35 +55,9 @@ V2 — Source Traceability (FR3)
 
 Condition: Each record must contain a recognised source ID, a positive integer page number and a non-empty source filename.
 
-Rule
-
-Records Tested
-
-Passed
-
-Failed
-
-Action
-
-V1
-
-285
-
-285
-
-0
-
-Retain records for further readability review
-
-V2
-
-285
-
-285
-
-0
-
-Retain source metadata; verify citation correctness later
+Rule	Records Tested	Passed	Failed	Action
+V1	285	285	0	Retain records for further readability review
+V2	285	285	0	Retain source metadata; verify citation correctness later
 
 Both rules passed for all 285 records.
 
@@ -185,29 +69,9 @@ No exact repeated text was identified in the 15-record sample.
 
 Two extraction anomalies were identified during manual inspection:
 
-Record ID
-
-Source
-
-PDF Page
-
-Observation
-
-1
-
-S01
-
-1
-
-Unreadable extracted text from the cover page
-
-251
-
-S01
-
-81
-
-Unreadable extracted text from the final barcode page
+Record ID	Source	PDF Page	Observation
+1	S01	1	Unreadable extracted text from the cover page
+251	S01	81	Unreadable extracted text from the final barcode page
 
 Comparison with the original PDF confirmed that these pages do not contain substantive academic regulations. Their corrupted text should be reviewed for exclusion from future retrieval, without deleting the original document.
 
@@ -253,29 +117,9 @@ A concrete safeguard is to maintain source references and restrict public distri
 
 7. Mitigation and Impact on Requirements
 
-Priority
-
-Improvement
-
-Responsibility and Timing
-
-Requirement Impact
-
-1
-
-Review suspicious text and verify important extracted academic sections against the original PDFs.
-
-Project developer, before retrieval implementation
-
-FR1 — accurate academic information
-
-2
-
-Verify document reuse permissions, source versions and citation metadata.
-
-Project developer with appropriate UTM source owners, before downstream use
-
-FR3 — reliable official source references
+Priority	Improvement	Responsibility and Timing	Requirement Impact
+1	Review suspicious text and verify important extracted academic sections against the original PDFs.	Project developer, before retrieval implementation	FR1 — accurate academic information
+2	Verify document reuse permissions, source versions and citation metadata.	Project developer with appropriate UTM source owners, before downstream use	FR3 — reliable official source references
 
 The first improvement reduces the risk of incorrect or incomplete academic answers, supporting the future answer correctness target of at least 80%.
 
@@ -297,28 +141,22 @@ The dataset should therefore remain on HOLD for downstream retrieval-system use 
 
 Conditions for re-review:
 
-Confirm permission or another applicable legal basis for the intended document use.
-
-Review and appropriately handle the identified extraction anomalies.
-
-Verify source versions and inspect representative substantive academic content against the original documents.
+1. Confirm permission or another applicable legal basis for the intended document use.
+2. Review and appropriately handle the identified extraction anomalies.
+3. Verify source versions and inspect representative substantive academic content against the original documents.
 
 Once these conditions are satisfied, the prepared dataset can be reassessed for further development.
 
+⸻
+
 Supporting Evidence
 
-Week 2 Requirements Specification — docs/week2_requirements.md
-
-Week 2 Evaluation Criteria — docs/week2_evaluation_criteria.md
-
-Week 3 prepared text output — data/pipeline_v1/documents/prepared_text.jsonl
-
-Week 3 pipeline manifest — data/pipeline_v1/documents/pipeline_manifest.json
-
-Week 3/Week 4 notebook — UniGuide_Week3_Pipeline_Week4_Data_Quality_Audit.ipynb
-
-Week 4 sample inspection, validation and source coverage outputs
-
-Original Academic Regulations 2026 PDF, pages 1 and 81
+* Week 2 Requirements Specification — docs/week2_requirements.md
+* Week 2 Evaluation Criteria — docs/week2_evaluation_criteria.md
+* Week 3 prepared text output — data/pipeline_v1/documents/prepared_text.jsonl
+* Week 3 pipeline manifest — data/pipeline_v1/documents/pipeline_manifest.json
+* Week 3/Week 4 notebook — UniGuide_Week3_Pipeline_Week4_Data_Quality_Audit.ipynb
+* Week 4 sample inspection, validation and source coverage outputs
+* Original Academic Regulations 2026 PDF, pages 1 and 81
 
 Audit limitation: The findings establish the observed quality of the audited prepared data under the stated checks. They do not establish final answer accuracy, retrieval performance, citation correctness or system fairness.
