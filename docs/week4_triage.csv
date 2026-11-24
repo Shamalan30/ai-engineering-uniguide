@@ -1,0 +1,29 @@
+chunk_id,action,reason
+1,quarantine,The extracted text contains significant OCR errors and unreadable characters. The content requires verification against the original PDF before inclusion in the dataset.
+2,remove,"The chunk contains only the document title and edition information, with no substantive academic regulations relevant to student queries."
+4,remove,"The chunk contains only copyright and publication information, which is not relevant to academic policy queries."
+10,remove,"The chunk contains only a page number and a contents heading, providing no meaningful academic information for student queries."
+17,remove,The chunk contains only an isolated contents heading with no meaningful academic information relevant to student queries.
+20,remove,"The chunk contains only a Roman numeral page number and a contents heading, with no meaningful academic information."
+55,remove,The chunk contains an incomplete sentence referring to Table 1 without providing meaningful information or sufficient context for retrieval.
+90,quarantine,"The chunk contains potentially important academic information about effective learning time, but lacks sufficient context due to sentence fragmentation."
+97,quarantine,"The chunk contains an incomplete sentence and a missing character, with potentially important information regarding academic appeal decisions that requires further verification."
+112,remove,The chunk contains only an incomplete word fragment with no meaningful academic information or standalone context.
+114,retain,"Despite its short length and minor extraction noise, the chunk contains meaningful academic information referring to Table 6 and the interpretation of student grades."
+121,quarantine,The chunk contains potentially relevant academic assessment criteria but has an incomplete word and insufficient context to identify the associated grade or assessment category.
+150,quarantine,"The chunk contains important academic information regarding academic status and CGPA thresholds, but the incomplete sentence lacks sufficient context for accurate interpretation."
+200,quarantine,The chunk contains an incomplete sentence fragment with insufficient context to determine its academic meaning or relevance.
+210,quarantine,The chunk contains an incomplete sentence referring to a university methodology without sufficient context to identify the associated academic procedure.
+218,quarantine,The chunk contains an incomplete sentence with missing characters and insufficient context to accurately interpret the academic regulation.
+240,quarantine,The chunk contains an incomplete word fragment with insufficient context to determine its original academic meaning.
+243,quarantine,"The chunk contains important information regarding GPA and CGPA calculations, but sentence fragmentation prevents accurate interpretation of the academic regulation."
+250,quarantine,The chunk contains important academic policy exceptions but lacks the preceding context needed to identify which regulation these exceptions apply to.
+251,quarantine,"The chunk contains significant OCR errors, unreadable characters and publisher information, requiring verification against the original PDF."
+252,retain,The chunk contains meaningful information identifying the target audience of the course registration guide as full-time senior undergraduate students.
+253,retain,The chunk contains clear and relevant instructions for accessing the MyUTM Portal and Student Portal during course registration.
+254,retain,The chunk contains clear and relevant instructions for navigating to Course Registration and UG Application in the student portal.
+259,quarantine,The chunk contains relevant course registration approval information but lacks the preceding context needed to identify the conditions for automatic approval.
+260,retain,The chunk contains clear and relevant instructions for viewing the course registration slip through the student portal.
+263,quarantine,"The chunk contains an incomplete statement regarding the Academic Advisor's authority, with insufficient context for accurate interpretation."
+266,quarantine,"The chunk contains fragmented text and extraction errors, requiring verification against the original PDF to accurately interpret the course registration terminology."
+267,quarantine,The chunk contains potentially relevant information about online exam proctoring but lacks sufficient context to determine the associated examination requirements.
